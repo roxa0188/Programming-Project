@@ -40,8 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateKeyGenerator.cs" />
     <Compile Include="EntityKeyGenerator.cs" />
+    <Compile Include="FactoryKeyGenerator.cs" />
     <Compile Include="IKeyGenerator.cs" />
+    <Compile Include="RandomKeyGenerator.cs" />
     <Compile Include="SendMail.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderRepository.cs" />

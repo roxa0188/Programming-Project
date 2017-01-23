@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PrettyHairLibrary
 {
     [Serializable]
-    class EntityKeyGenerator
+    class EntityKeyGenerator: IKeyGenerator
     {
         private static volatile EntityKeyGenerator instance;
 
@@ -15,12 +15,13 @@ namespace PrettyHairLibrary
         {
             get
             {
-                if(instance == null)
+                if (instance == null)
                 {
                     instance = new EntityKeyGenerator;
                 }
                 return instance;
             }
+        }
 
         private int nextKey;
 

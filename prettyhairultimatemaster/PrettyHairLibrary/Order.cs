@@ -12,7 +12,7 @@ namespace PrettyHairLibrary
         Dictionary<ProductType, int> orderLines = new Dictionary<ProductType, int>();
         private string deliveryDate;
         private string orderDate;
-        public int OrderId { get; private set; } 
+        public int OrderId { get; } 
         
         public Order(int orderid, string delivDate,string ordDate, Dictionary<ProductType, int> ordLines)
         {
