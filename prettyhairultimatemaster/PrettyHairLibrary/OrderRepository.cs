@@ -1,60 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace PrettyHairLibrary
 {
     public class OrderRepository
     {
-        public event TickHandler Tick;
-        public EventArgs eventArgs = null;
-        public delegate void TickHandler(OrderRepository orderReposit, EventArgs evArgs);
-        private List<Order> listOfOrders = new List<Order>();
+        private Dictionary<int, Order> Orders = new Dictionary<int, Order>();
+
+        IKeyGenerator KeyGenerator = FactoryKeyGenerator.SelectMethod(1);
+        
 
         public void Add(Order order)
         {
-            listOfOrders.Add(order);
-            ReceivedOrderNotification();
-            if (!order.CheckQuantity()) NotifyWarehouseManagerAboutAmount(); 
+            Orders.Add(order.OrderId, order);
         }
 
-
-        private void ReceivedOrderNotification()
+        public Order Get(int id)
         {
-            // send info instead
-            // if diff from null
-            Tick?.Invoke(this, eventArgs);
+            return Orders[id];
         }
 
-        private void NotifyWarehouseManagerAboutAmount()
+        public Order Create(DateTime orderDate, DateTime deliveryDate)
         {
-            // send info instead
-            // if diff from null
-            Tick?.Invoke(this, eventArgs);
+            Order Order = new Order(KeyGenerator.NextKey, orderDate, deliveryDate);
+            return Order;
         }
 
-
-        public void Remove(Order order) {
-            listOfOrders.Remove(order);
-        }
-
-        public void Remove(int orderId)
+        public List<Order> GetAll()
         {
-            listOfOrders.Remove(FindOrder(orderId));
-        }
-
-        public Order FindOrder(int orderId)
-        {
-            Order order = null;
-            foreach (Order ord in listOfOrders)
-            {
-                if (ord.OrderId == orderId) order = ord;
-            }
-            return order;
-        }
-
-        public Order GetOrder(int orderId)
-        {
-            return FindOrder(orderId);
+            return Orders.Values.ToList();
         }
 
     }

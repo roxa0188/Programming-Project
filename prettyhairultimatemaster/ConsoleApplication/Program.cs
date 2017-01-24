@@ -16,6 +16,7 @@ namespace CLI
         private OrderRepository orderRepository = new OrderRepository();
         private Menu menu; 
 
+
         static void Main(string[] args)
         {
             Program myProgram = new Program();
@@ -59,7 +60,7 @@ namespace CLI
             int.TryParse(Console.ReadLine(), out option);
             switch (option)
             {
-                case 3:
+                case 0:
                     isRunning = false;
                     break;
                 case 1:
@@ -70,11 +71,80 @@ namespace CLI
                     Console.Clear();
                     UpdateProductTypes();
                     break;
+                case 3:
+                    Console.Clear();
+                    OrderMenu();
+                    break;
                 default:
                     Console.WriteLine("Wrong input try again.");
                     break;
             }
         }
+
+        private void OrderMenu()
+        {
+
+            bool Running = true;
+
+            while (Running)
+            {
+                Console.Clear();
+                Console.WriteLine("Order System\n");
+
+                Console.WriteLine("1. Create New Order");
+
+                Console.WriteLine("0. Exit");
+                string option;
+                option = Console.ReadLine();
+                switch (option)
+                {
+                    case "1":
+                        CreateNewOrder();
+                        break;
+
+                    case "0":
+                        Running = false;
+                        break;
+                }
+            }
+        }
+
+
+        private void CreateNewOrder()
+        {
+
+            Console.Clear();
+
+
+            Console.Write("Delivery Date: ");
+            DateTime DeliveryDate = DateTime.Parse(Console.ReadLine());
+            
+            DateTime OrderDate = DateTime.Now;
+
+            Order Order = orderRepository.Create(OrderDate, DeliveryDate);
+
+            bool AddOrderLines = true;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Add Products to Order");
+
+                Console.Write("Product ID: "); 
+                int ProductTypeID = int.Parse(Console.ReadLine());
+
+                Console.Write("\nQuantity: ");
+                int Quantity = int.Parse(Console.ReadLine());
+
+                ProductType PT = productTypeRepository.GetProduct(ProductTypeID);
+                OrderLine OL = new OrderLine(PT, Quantity);
+
+                Order.AddOrderLine(OL);
+
+
+            } while (AddOrderLines);
+            orderRepository.Add(Order);
+        }
+
 
         private ProductType SelectProduct()
         {

@@ -8,19 +8,22 @@ namespace PrettyHairLibrary
 {
     public class ProductType
     {
-        private double price;
-        private int amount;
-        public ProductType(int id, string description, double price, int amount)
-        {
-            ID = id;
-            Description = description;
-            Price = price;
-            Amount = amount;
-        }
-
         public int ID { get; set; }
         public string Description { get; set; }
-        public double Price
+        public double Price { get; set; }
+        public int Amount { get; set; }
+
+        public ProductType(int ID, string Desc, double Price, int Amount)
+        {
+            this.ID = ID;
+            this.Description = Desc;
+            this.Price = Price;
+            this.Amount = Amount;
+        }
+
+        private double price;
+        private int  amount;
+        public double SetPrice
         {
             get
             {
@@ -38,7 +41,7 @@ namespace PrettyHairLibrary
                 }
             }
         }
-        public int Amount
+        public int SetAmount
         {
             get
             {

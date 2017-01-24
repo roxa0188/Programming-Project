@@ -9,41 +9,37 @@ namespace PrettyHairLibrary
    public class Order
     {
         // Unique key for the product, and then the amount of this product in the order
-        Dictionary<ProductType, int> orderLines = new Dictionary<ProductType, int>();
-        private string deliveryDate;
-        private string orderDate;
-        public int OrderId { get; } 
         
-        public Order(int orderid, string delivDate,string ordDate, Dictionary<ProductType, int> ordLines)
+        public List<OrderLine> OrderLines { get; set; }
+        private DateTime deliveryDate { get; set; }
+        private DateTime orderDate { get; set; }
+        public int OrderId { get; set; }
+        
+
+
+        public Order(int orderid, DateTime delivDate, DateTime ordDate)
         {
-            orderLines = ordLines;
+            
             deliveryDate = delivDate;
             orderDate = ordDate;
             OrderId = orderid;
         }
 
-        public bool CheckQuantity()
+        public void AddOrderLine(OrderLine orderLine)
         {
-            bool condition = true;
-
-            foreach(KeyValuePair<ProductType,int> productType in orderLines)
-            {
-                if (productType.Key.Amount < productType.Value) {
-                    condition = false;
-                }
-            }
-            return condition;
+            OrderLines.Add(orderLine);
         }
 
-        public Dictionary<ProductType, int> GetOrderLines()
-        {
-            return orderLines;
-        }
+       
+        
 
         public Order()
         {
 
         }
+
+        
+
         public override string ToString()
         {
 

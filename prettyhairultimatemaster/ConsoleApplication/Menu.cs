@@ -22,7 +22,8 @@ namespace ConsoleApplication
         {
             Console.WriteLine("1. View all product types");
             Console.WriteLine("2. Update product.");
-            Console.WriteLine("3. Close");
+            Console.WriteLine("3. Create Order");
+            Console.WriteLine("4. Close");
         }
 
         public void ViewProductTypes()
