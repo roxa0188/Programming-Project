@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PrettyHairLibrary
 {
-    class FactoryKeyGenerator
+    public class FactoryKeyGenerator
     {
        public static IKeyGenerator SelectMethod(int type)
         {

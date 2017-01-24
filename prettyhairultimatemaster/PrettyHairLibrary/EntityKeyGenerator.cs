@@ -17,7 +17,7 @@ namespace PrettyHairLibrary
             {
                 if (instance == null)
                 {
-                    instance = new EntityKeyGenerator;
+                    instance = new EntityKeyGenerator();
                 }
                 return instance;
             }
@@ -43,4 +43,4 @@ namespace PrettyHairLibrary
         }
         
     }
-}
+

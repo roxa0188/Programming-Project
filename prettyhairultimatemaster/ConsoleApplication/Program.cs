@@ -36,6 +36,9 @@ namespace CLI
             menu = new Menu(productTypeRepository);
             isRunning = true;
 
+            IKeyGenerator KeyGenerator = FactoryKeyGenerator.SelectMethod(1);
+
+
             while (isRunning)
             {
                 menu.HeadLine("Pretty Hair");
