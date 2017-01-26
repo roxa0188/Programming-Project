@@ -21,7 +21,7 @@ namespace PrettyHairLibrary
             return Orders[id];
         }
 
-        public Order Create(DateTime orderDate, DateTime deliveryDate)
+        public Order Create(string orderDate, string deliveryDate)
         {
             Order Order = new Order(KeyGenerator.NextKey, orderDate, deliveryDate);
             return Order;
@@ -32,5 +32,6 @@ namespace PrettyHairLibrary
             return Orders.Values.ToList();
         }
 
+        
     }
 }

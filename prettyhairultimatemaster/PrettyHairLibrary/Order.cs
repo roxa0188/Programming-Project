@@ -11,13 +11,13 @@ namespace PrettyHairLibrary
         // Unique key for the product, and then the amount of this product in the order
         
         public List<OrderLine> OrderLines { get; set; }
-        private DateTime deliveryDate { get; set; }
-        private DateTime orderDate { get; set; }
+        private string deliveryDate { get; set; }
+        private string orderDate { get; set; }
         public int OrderId { get; set; }
         
 
 
-        public Order(int orderid, DateTime delivDate, DateTime ordDate)
+        public Order(int orderid, string delivDate, string ordDate)
         {
             
             deliveryDate = delivDate;
@@ -38,7 +38,7 @@ namespace PrettyHairLibrary
 
         }
 
-        
+
 
         public override string ToString()
         {

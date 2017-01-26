@@ -117,9 +117,9 @@ namespace CLI
 
 
             Console.Write("Delivery Date: ");
-            DateTime DeliveryDate = DateTime.Parse(Console.ReadLine());
-            
-            DateTime OrderDate = DateTime.Now;
+            string DeliveryDate = Console.ReadLine();
+            Console.Write("Order Date: ");
+            string OrderDate = Console.ReadLine();
 
             Order Order = orderRepository.Create(OrderDate, DeliveryDate);
 
